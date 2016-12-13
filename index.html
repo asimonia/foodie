@@ -21,14 +21,57 @@
 	</md-toolbar>
 
 	<md-content class="md-padding" layout="row" layout-wrap>
-		<md-card flex="30">
-			<img src="http://www.bbcgoodfood.com/sites/default/files/glossary/banana-crop.jpg" alt="">
+		<md-card ng-repeat="fooditem in fooditems" flex="30">
+			<img ng-src="{{ fooditem.image }}" alt="image">
 			<md-card-content>
-				<div class="fooditem-info">
+				<div class="fooditem-info" ng-show="!showContact">
 					<h2 class="md-title">{{ fooditem.title }}</h2>
-					<h3>{{ fooditem.price }}</h3>
+					<h2>{{ fooditem.posted | date }}</h2>
+					<h3>{{ fooditem.price | currency }}</h3>
 					<p>{{ fooditem.description }}</p>
 				</div>
+
+				<div class="fooditem-contact" ng-show="showContact">
+					<p><md-icon class="mdi mdi-account"></md-icon> {{ fooditem.contact.name }}</p>
+					<p><md-icon class="mdi mdi-phone"></md-icon> {{ fooditem.contact.phone }}</p>
+					<p><md-icon class="mdi mdi-email"></md-icon> {{ fooditem.contact.email }}</p>
+				</div>
+
+				<div layout="row">
+					<md-button 
+						ng-click="showContact = true"
+						ng-show="!showContact">
+						Contact
+					</md-button>
+
+					<md-button
+						ng-click="showContact = false"
+						ng-show="showContact">
+						Details
+					</md-button>
+
+					<md-button
+						ng-click="showAdmin = true"
+						ng-show="!showAdmin">
+						Admin
+					</md-button>
+
+					<md-button
+						ng-click="showAdmin = false"
+						ng-show="showAdmin">
+						Close
+					</md-button>
+				</div>
+
+				<div class="food-admin" ng-if="showAdmin">
+					<h3>Admin</h3>
+					<div layout="row">
+						<md-button class="md-primary">Edit</md-button>
+						<md-button class="md-warn">Delete</md-button>
+					</div>
+				</div>
+
+			</md-card-content>
 		</md-card>
 	</md-content>
 	
@@ -40,5 +83,8 @@
 
 	<!-- Controllers -->
 	<script src="app/controllers/foodie.ctr.js"></script>
+
+	<!-- Factories -->
+	<script src="app/factories/foodie.fac.js"></script>
 </body>
 </html>

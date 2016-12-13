@@ -1,10 +1,8 @@
 "use strict";
 
-app.controller("foodieCtrl", function($scope) {
+app.controller("foodieCtrl", function($scope, $http, foodieFactory) {
 
-	$scope.fooditem = {
-		title: "First Item",
-		price: "$1,000,000",
-		description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, reprehenderit odit laudantium quasi soluta, quod minima. Reiciendis velit soluta iure numquam cumque esse provident suscipit vitae magni quia rem, tenetur!"
-	}
+	foodieFactory.getFood().then(function(fooditems) {
+		$scope.fooditems = fooditems.data;
+	})
 });
