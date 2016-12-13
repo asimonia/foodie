@@ -1,0 +1,72 @@
+[
+  {
+    "id":"1",
+    "title":"Apple",
+    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi earum in facere quis vel id, inventore accusamus fuga enim expedita sed eligendi vero ratione, doloribus magnam, voluptatum numquam voluptates error.",
+    "price":10,
+    "posted":"2016-01-23",
+    "contact": {
+      "name":"Alex Simonian",
+      "phone":"(555) 555-5555",
+      "email":"alex.simonian@gmail.com"
+    },
+    "categories":[
+      "Fruit",
+      "Health food"
+    ],
+    "image": "http://pngimg.com/upload/small/apple_PNG12436.png",
+    "views": 24
+  },
+  {
+    "id":"2",
+    "title":"Banana",
+    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat iure eum tempore unde praesentium hic. Quis quam reprehenderit asperiores itaque molestias officia numquam, expedita, alias impedit vero voluptate adipisci veniam..",
+    "price": 25,
+    "posted": "2016-02-21",
+    "contact": {
+      "name": "Alex Simonian",
+      "phone": "(555) 555-5555",
+      "email": "alex.simonian@gmail.com"
+    },
+    "categories": [
+      "Exotic Fruit"
+    ],
+    "image":"http://www.bbcgoodfood.com/sites/default/files/glossary/banana-crop.jpg",
+    "views": 42
+  },
+  {
+    "id":"3",
+    "title":"Chicken",
+    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit repudiandae cum, molestias ratione! Vitae deleniti, totam amet eius, neque possimus provident minus rem dolores nisi pariatur reprehenderit sint illo repellat!",
+    "price":25,
+    "posted":"2016-11-27",
+    "contact": {
+      "name":"Alex Simonian",
+      "phone":"(555) 555-5555",
+      "email":"alex.simonian@gmail.com"
+    },
+    "categories":[
+      "Meat",
+      "Chicken"
+    ],
+    "image":"http://images.media-allrecipes.com/userphotos/560x315/211414.jpg",
+    "views":29
+  },
+  {
+    "id":"4",
+    "title":"Fish",
+    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum facere, sequi animi rem, blanditiis officiis fugit voluptate, temporibus nemo, eveniet non! Possimus repellat nobis aspernatur, corporis, est veniam sed quaerat!",
+    "price":51,
+    "posted":"2017-01-02",
+    "contact": {
+      "name":"Alex Simonian",
+      "phone":"(555) 555-5555",
+      "email":"alex.simonian@gmail.com"
+    },
+    "categories":[
+      "Pesce"
+    ],
+    "image":"https://www.takemefishing.org/tmf/assets/images/fish/american-shad-464x170.png",
+    "views":77
+  }
+]

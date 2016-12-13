@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Foodie</title>
+	<link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+	<link href="node_modules/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body ng-app="foodie" ng-controller="foodieCtrl">
+	
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<p><strong>Foodie</strong></p>
+
+			<md-button>
+				<md-icon class="mdi mdi-book"></md-icon>
+				New Food Item
+			</md-button>
+		</div>
+
+	</md-toolbar>
+
+	<md-content class="md-padding" layout="row" layout-wrap>
+		<md-card flex="30">
+			<img src="http://www.bbcgoodfood.com/sites/default/files/glossary/banana-crop.jpg" alt="">
+			<md-card-content>
+				<div class="fooditem-info">
+					<h2 class="md-title">{{ fooditem.title }}</h2>
+					<h3>{{ fooditem.price }}</h3>
+					<p>{{ fooditem.description }}</p>
+				</div>
+		</md-card>
+	</md-content>
+	
+	<script src="node_modules/angular/angular.js"></script>
+	<script src="node_modules/angular-animate/angular-animate.js"></script>
+	<script src="node_modules/angular-aria/angular-aria.js"></script>
+	<script src="node_modules/angular-material/angular-material.js"></script>
+	<script src="app/app.js"></script>
+
+	<!-- Controllers -->
+	<script src="app/controllers/foodie.ctr.js"></script>
+</body>
+</html>
