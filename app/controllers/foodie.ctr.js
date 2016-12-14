@@ -2,8 +2,12 @@
 
 app.controller("foodieCtrl", function($scope, $http, foodieFactory, $mdSidenav, $mdToast, $mdDialog) {
 
+	// returns a Promise
 	foodieFactory.getFood().then(function(fooditems) {
 		$scope.fooditems = fooditems.data;
+		console.log($scope.fooditems);
+		$scope.categories = getCategories($scope.fooditems);
+		console.log($scope.categories);
 	});
 
 	var contact = {
@@ -67,4 +71,18 @@ app.controller("foodieCtrl", function($scope, $http, foodieFactory, $mdSidenav, 
 				.hideDelay(3000)
 		);
 	}
+
+	function getCategories(fooditems) {
+
+		var categories = [];
+
+		angular.forEach(fooditems, function(item) {
+			angular.forEach(item.categories, function(category) {
+				categories.push(category);
+			});
+		});
+
+		return _.uniq(categories);
+	}
+
 });
