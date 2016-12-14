@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("foodie", ['ngMaterial', 'ui.router']);
+var app = angular.module("foodie", ['ngMaterial', 'ui.router', 'firebase']);
 
 app.config(function($mdThemingProvider, $stateProvider) {
   $mdThemingProvider.theme('default')

@@ -4,6 +4,7 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 
 	var vm = this;
 
+	vm.categories;
 	vm.openSidebar = openSidebar;
 	vm.closeSidebar = closeSidebar;
 	vm.saveFooditem = saveFooditem;
@@ -11,12 +12,9 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 	vm.deleteFooditem = deleteFooditem;
 	vm.saveEdit = saveEdit;
 
-	vm.fooditems;
-	vm.categories;
-
-	foodieFactory.getFood().then(function(fooditems) {
-		vm.fooditems = fooditems.data;
-		vm.categories = getCategories(vm.fooditems);
+	vm.fooditems = foodieFactory.ref;
+	vm.fooditems.$loaded().then(function(fooditems) {
+		vm.categories = getCategories(fooditems);
 	});
 
 	$scope.$on('newFooditem', function(event, fooditem) {

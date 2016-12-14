@@ -1,10 +1,10 @@
 "use strict";
 
-app.factory("foodieFactory", function($http) {
+app.factory("foodieFactory", function($http, $firebaseArray) {
 
-	function getFood() {
-		return $http.get("data/food.json");
-	}
+	var ref = new Firebase('https://foodie-93ebe.firebaseio.com');
 
-	return {getFood};
+	return {
+		ref: $firebaseArray(ref)
+	};
 });
