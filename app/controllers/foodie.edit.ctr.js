@@ -3,9 +3,10 @@
 app.controller("editFoodieCtrl", function($scope, $state, $mdSidenav, $timeout, $mdDialog, foodieFactory) {
 
 	var vm = this;
+	vm.fooditems = foodieFactory.ref;
 	vm.closeSidebar = closeSidebar;
 	vm.saveEdit = saveEdit;
-	vm.fooditem = $state.params.fooditem;
+	vm.fooditem = vm.fooditems.$getRecord($state.params.id);
 
 	$timeout(function() {
 		$mdSidenav('left').open();	
@@ -26,8 +27,10 @@ app.controller("editFoodieCtrl", function($scope, $state, $mdSidenav, $timeout, 
 	}
 
 	function saveEdit(fooditem) {
-		$scope.$emit("editSaved", "Edit saved!");
-		vm.sidenavOpen = false;
+		vm.fooditems.$save(vm.fooditem).then(function() {
+			$scope.$emit("editSaved", "Edit saved!");
+			vm.sidenavOpen = false;			
+		});
 	}
 
 });

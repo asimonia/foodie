@@ -18,8 +18,7 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 	});
 
 	$scope.$on('newFooditem', function(event, fooditem) {
-		fooditem.id = vm.fooditems.length + 1;
-		vm.fooditems.push(fooditem);
+		vm.fooditems.$add(fooditem);
 		showToast('Food item saved!');
 	});
 
@@ -53,8 +52,7 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 
 	function editFooditem(fooditem) {
 		$state.go('fooditems.edit', {
-			id: fooditem.id,
-			fooditem: fooditem
+			id: fooditem.$id
 		});
 	}
 
@@ -72,8 +70,8 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 			.cancel('No')
 			.targetEvent(event);
 		$mdDialog.show(confirm).then(function() {
-			var index = $scope.fooditems.indexOf(fooditem);
-			vm.fooditems.splice(index, 1);
+			vm.fooditems.$remove(fooditem);
+			showToast('Food item deleted!');
 		}, function() {
 			
 		});
