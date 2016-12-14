@@ -34,6 +34,16 @@ app.config(function($mdThemingProvider, $stateProvider) {
       params: {
         fooditem: null
       }
+    })
+    .state('fooditems.search', {
+      url: '/search',
+      templateUrl: 'templates/fooditems.search.html',
+      controller: 'searchFoodieCtrl as vm'
+    })
+    .state('fooditems.products', {
+      url: '/products',
+      templateUrl: 'templates/fooditems.products.html',
+      controller: 'productsFoodieCtrl as vm'
     });
 
 });

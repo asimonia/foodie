@@ -1,0 +1,32 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-open="vm.sidenavOpen">
+	<md-toolbar>
+		<h1 class="md-toolbar-tools">Search for recipe</h1>
+	</md-toolbar>
+
+	<md-content layout-padding>
+		<md-input-container>
+			<label for="title">Recipe</label>
+			<input type="text" id="title" ng-model="recipe" md-autofocus>
+		</md-input-container>
+		<md-button ng-click="vm.searchRecipe(recipe)" class="md-primary">
+			Search
+		</md-button>
+
+		<md-button ng-click="vm.closeSidebar()" class="md-warn">
+			Cancel
+		</md-button>
+
+		<md-content class="md-padding" layout-wrap>
+			<md-card ng-repeat="recipe in vm.recipes.results" class="foodcard">
+				<img ng-src="https://spoonacular.com/recipeImages/{{ recipe.image }}" alt="image">
+				
+				<md-card-content>
+					<div class="recipe-info">
+						<h2 class="md-title">{{ recipe.title }}</h2>
+						<p></p>
+					</div>
+				</md-card-content>
+			</md-card>
+		</md-content>
+	</md-content>
+</md-sidenav>
