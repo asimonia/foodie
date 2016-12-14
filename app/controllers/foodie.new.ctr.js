@@ -4,6 +4,7 @@ app.controller("newFoodieCtrl", function($scope, $state, $mdSidenav, $timeout, $
 
 	var vm = this;
 	vm.closeSidebar = closeSidebar;
+	vm.saveFooditem = saveFooditem;
 
 	$timeout(function() {
 		$mdSidenav('left').open();	
@@ -21,6 +22,21 @@ app.controller("newFoodieCtrl", function($scope, $state, $mdSidenav, $timeout, $
 
 	function closeSidebar() {
 		vm.sidenavOpen = false;
+	}
+
+	function saveFooditem(fooditem) {
+
+		if(fooditem) {
+
+			fooditem.contact = {
+				name: "Alex Simonian",
+				phone: "(555) 555-5555",
+				email: "alex.simonian@gmail.com"
+			};
+
+			$scope.$emit('newFooditem', fooditem);
+			vm.sidenavOpen = false;
+		}
 	}
 
 });

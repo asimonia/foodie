@@ -19,6 +19,12 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 		vm.categories = getCategories(vm.fooditems);
 	});
 
+	$scope.$on('newFooditem', function(event, fooditem) {
+		fooditem.id = vm.fooditems.length + 1;
+		vm.fooditems.push(fooditem);
+		showToast('Food item saved!');
+	});
+
 	var contact = {
 		name: "Alex Simonian",
 		phone: "(555) 555-5555",
