@@ -34,42 +34,7 @@
 	</div>
 </div>
 
-<md-sidenav class="md-sidenav-left md-whiteframe-z2"
-	md-component-id="left">
-	<md-toolbar>
-		<h1 class="md-toolbar-tools">Add a food item</h1>
-	</md-toolbar>
-
-	<md-content layout-padding>
-		<md-input-container>
-			<label for="title">Title</label>
-			<input type="text" id="title" ng-model="fooditem.title" md-autofocus>
-		</md-input-container>
-		<md-input-container>
-			<label for="price">Price</label>
-			<input type="text" id="price" ng-model="fooditem.price" >
-		</md-input-container>
-		<md-input-container>
-			<label for="description">Description</label>
-			<textarea type="text" id="description" ng-model="fooditem.description" >
-			</textarea>
-		</md-input-container>
-		<md-input-container>
-			<label for="image">Image Link</label>
-			<input type="text" id="image" ng-model="fooditem.image">
-		</md-input-container>
-		<md-button ng-if="!editing" ng-click="vm.saveFooditem(fooditem)" class="md-primary">
-			Save
-		</md-button>
-		<md-button ng-if="editing" ng-click="vm.saveEdit(fooditem)" class="md-primary">
-			Save Edit
-		</md-button>
-		<md-button ng-click="vm.closeSidebar()" class="md-warn">
-			Cancel
-		</md-button>
-
-	</md-content>
-</md-sidenav>
+<ui-view></ui-view>
 
 <md-content class="md-padding" layout="row" layout-wrap>
 	<md-card ng-repeat="fooditem in vm.fooditems | filter: fooditemsFilter | filter: category" flex="30" class="foodcard">

@@ -21,6 +21,11 @@ app.config(function($mdThemingProvider, $stateProvider) {
       url: '/fooditems',
       templateUrl: 'templates/fooditems.html',
       controller: 'foodieCtrl as vm'
+    })
+    .state('fooditems.new', {
+      url: '/new',
+      templateUrl: 'templates/fooditems.new.html',
+      controller: 'newFoodieCtrl as vm'
     });
 
 });

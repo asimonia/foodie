@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("foodieCtrl", function($scope, $http, foodieFactory, $mdSidenav, $mdToast, $mdDialog) {
+app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdSidenav, $mdToast, $mdDialog) {
 
 	var vm = this;
 
@@ -26,7 +26,7 @@ app.controller("foodieCtrl", function($scope, $http, foodieFactory, $mdSidenav, 
 	};
 
 	function openSidebar() {
-		$mdSidenav('left').open();
+		$state.go('fooditems.new');
 	}
 
 	function closeSidebar() {
