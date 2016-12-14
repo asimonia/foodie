@@ -26,6 +26,14 @@ app.config(function($mdThemingProvider, $stateProvider) {
       url: '/new',
       templateUrl: 'templates/fooditems.new.html',
       controller: 'newFoodieCtrl as vm'
+    })
+    .state('fooditems.edit', {
+      url: '/edit/:id',
+      templateUrl: 'templates/fooditems.edit.html',
+      controller: 'editFoodieCtrl as vm',
+      params: {
+        fooditem: null
+      }
     });
 
 });

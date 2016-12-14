@@ -25,6 +25,10 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 		showToast('Food item saved!');
 	});
 
+	$scope.$on('editSaved', function(event, message) {
+		showToast(message);
+	});
+
 	var contact = {
 		name: "Alex Simonian",
 		phone: "(555) 555-5555",
@@ -50,9 +54,10 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 	}
 
 	function editFooditem(fooditem) {
-		vm.editing = true;
-		openSidebar();
-		vm.fooditem = fooditem;
+		$state.go('fooditems.edit', {
+			id: fooditem.id,
+			fooditem: fooditem
+		});
 	}
 
 	function saveEdit() {
