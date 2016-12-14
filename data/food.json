@@ -19,7 +19,7 @@
   },
   {
     "id":"2",
-    "title":"Banana",
+    "title":"Bananer",
     "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat iure eum tempore unde praesentium hic. Quis quam reprehenderit asperiores itaque molestias officia numquam, expedita, alias impedit vero voluptate adipisci veniam..",
     "price": 25,
     "posted": "2016-02-21",
@@ -36,8 +36,8 @@
   },
   {
     "id":"3",
-    "title":"Chicken",
-    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit repudiandae cum, molestias ratione! Vitae deleniti, totam amet eius, neque possimus provident minus rem dolores nisi pariatur reprehenderit sint illo repellat!",
+    "title":"Orange",
+    "description":"Very nice!",
     "price":25,
     "posted":"2016-11-27",
     "contact": {
@@ -49,7 +49,7 @@
       "Meat",
       "Chicken"
     ],
-    "image":"http://images.media-allrecipes.com/userphotos/560x315/211414.jpg",
+    "image":"http://pngimg.com/upload/orange_PNG786.png",
     "views":29
   },
   {
