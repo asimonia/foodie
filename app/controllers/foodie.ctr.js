@@ -26,12 +26,29 @@ app.controller("foodieCtrl", function($scope, $http, foodieFactory, $mdSidenav, 
 			$scope.fooditems.push(fooditem);
 			$scope.fooditem = {};
 			$scope.closeSidebar();
-			$mdToast.show(
-				$mdToast.simple()
-					.content(`${fooditem.title} saved!`)
-					.position('top, right')
-					.hideDelay(3000)
-			);
+			showToast("Food item saved!");
 		}
+	}
+
+	$scope.editFooditem = function(fooditem) {
+		$scope.editing = true;
+		$scope.openSidebar();
+		$scope.fooditem = fooditem;
+	}
+
+	$scope.saveEdit = function() {
+		$scope.editing = false;
+		$scope.fooditem = {};
+		$scope.closeSidebar();
+		showToast("Edit saved!");
+	}
+
+	function showToast(message) {
+		$mdToast.show(
+			$mdToast.simple()
+				.content(message)
+				.position('top, right')
+				.hideDelay(3000)
+		);
 	}
 });

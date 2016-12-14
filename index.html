@@ -44,10 +44,10 @@
 				<label for="image">Image Link</label>
 				<input type="text" id="image" ng-model="fooditem.image">
 			</md-input-container>
-			<md-button ng-click="saveFooditem(fooditem)" class="md-primary">
+			<md-button ng-if="!editing" ng-click="saveFooditem(fooditem)" class="md-primary">
 				Save
 			</md-button>
-			<md-button class="md-primary">
+			<md-button ng-if="editing" ng-click="saveEdit()" class="md-primary">
 				Save Edit
 			</md-button>
 			<md-button ng-click="closeSidebar()" class="md-warn">
@@ -106,7 +106,7 @@
 				<div class="food-admin" ng-if="showAdmin">
 					<h3>Admin</h3>
 					<div layout="row">
-						<md-button class="md-primary">Edit</md-button>
+						<md-button ng-click="editFooditem(fooditem)" ng-class="md-primary">Edit</md-button>
 						<md-button class="md-warn">Delete</md-button>
 					</div>
 				</div>
