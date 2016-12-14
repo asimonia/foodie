@@ -2,50 +2,61 @@
 
 app.controller("foodieCtrl", function($scope, $http, foodieFactory, $mdSidenav, $mdToast, $mdDialog) {
 
-	// returns a Promise
+	var vm = this;
+
+	vm.openSidebar = openSidebar;
+	vm.closeSidebar = closeSidebar;
+	vm.saveFooditem = saveFooditem;
+	vm.editFooditem = editFooditem;
+	vm.deleteFooditem = deleteFooditem;
+	vm.saveEdit = saveEdit;
+
+	vm.fooditems;
+	vm.categories;
+
 	foodieFactory.getFood().then(function(fooditems) {
-		$scope.fooditems = fooditems.data;
-		$scope.categories = getCategories($scope.fooditems);
+		vm.fooditems = fooditems.data;
+		vm.categories = getCategories(vm.fooditems);
 	});
 
 	var contact = {
 		name: "Alex Simonian",
 		phone: "(555) 555-5555",
 		email: "alex.simonian@gmail.com"
-	}
+	};
 
-	$scope.openSidebar = function() {
+	function openSidebar() {
 		$mdSidenav('left').open();
 	}
 
-	$scope.closeSidebar = function() {
+	function closeSidebar() {
 		$mdSidenav('left').close();
 	}
 
-	$scope.saveFooditem = function(fooditem) {
+	function saveFooditem(fooditem) {
 		if(fooditem) {
 			fooditem.contact = contact;
-			$scope.fooditems.push(fooditem);
-			$scope.fooditem = {};
-			$scope.closeSidebar();
+			vm.fooditems.push(fooditem);
+			vm.fooditem = {};
+			closeSidebar();
 			showToast("Food item saved!");
 		}
 	}
 
-	$scope.editFooditem = function(fooditem) {
-		$scope.editing = true;
-		$scope.openSidebar();
-		$scope.fooditem = fooditem;
+	function editFooditem(fooditem) {
+		vm.editing = true;
+		openSidebar();
+		vm.fooditem = fooditem;
 	}
 
-	$scope.saveEdit = function() {
-		$scope.editing = false;
-		$scope.fooditem = {};
-		$scope.closeSidebar();
+	function saveEdit() {
+		vm.editing = false;
+		vm.fooditem = {};
+		closeSidebar();
 		showToast("Edit saved!");
 	}
 
-	$scope.deleteFooditem = function(event, fooditem) {
+	function deleteFooditem(event, fooditem) {
 		var confirm = $mdDialog.confirm()
 			.title(`Are you sure you want to delete ${fooditem.title}?`)
 			.ok('Yes')
@@ -53,7 +64,7 @@ app.controller("foodieCtrl", function($scope, $http, foodieFactory, $mdSidenav, 
 			.targetEvent(event);
 		$mdDialog.show(confirm).then(function() {
 			var index = $scope.fooditems.indexOf(fooditem);
-			$scope.fooditems.splice(index, 1);
+			vm.fooditems.splice(index, 1);
 		}, function() {
 			
 		});

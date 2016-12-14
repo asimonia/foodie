@@ -6,5 +6,5 @@ app.factory("foodieFactory", function($http) {
 		return $http.get("data/food.json");
 	}
 
-	return {getFood}
+	return {getFood};
 });

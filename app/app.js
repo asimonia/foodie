@@ -1,8 +1,8 @@
-"use strict"
+"use strict";
 
-var app = angular.module("foodie", ['ngMaterial']);
+var app = angular.module("foodie", ['ngMaterial', 'ui.router']);
 
-app.config(function($mdThemingProvider) {
+app.config(function($mdThemingProvider, $stateProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('pink', {
       'default': '400', // by default use shade 400 from the pink palette for primary intentions
@@ -15,4 +15,12 @@ app.config(function($mdThemingProvider) {
     .accentPalette('purple', {
       'default': '200' // use shade 200 for default, and keep all other shades the same
     });
-})
+
+  $stateProvider
+    .state('fooditems', {
+      url: '/fooditems',
+      templateUrl: 'templates/fooditems.html',
+      controller: 'foodieCtrl as vm'
+    });
+
+});
