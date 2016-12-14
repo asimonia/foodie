@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("foodieCtrl", function($scope, $http, foodieFactory, $mdSidenav, $mdToast) {
+app.controller("foodieCtrl", function($scope, $http, foodieFactory, $mdSidenav, $mdToast, $mdDialog) {
 
 	foodieFactory.getFood().then(function(fooditems) {
 		$scope.fooditems = fooditems.data;
@@ -22,7 +22,7 @@ app.controller("foodieCtrl", function($scope, $http, foodieFactory, $mdSidenav, 
 
 	$scope.saveFooditem = function(fooditem) {
 		if(fooditem) {
-			fooditem.contact = contact
+			fooditem.contact = contact;
 			$scope.fooditems.push(fooditem);
 			$scope.fooditem = {};
 			$scope.closeSidebar();
@@ -41,6 +41,22 @@ app.controller("foodieCtrl", function($scope, $http, foodieFactory, $mdSidenav, 
 		$scope.fooditem = {};
 		$scope.closeSidebar();
 		showToast("Edit saved!");
+	}
+
+	$scope.deleteFooditem = function(event, fooditem) {
+		var confirm = $mdDialog.confirm()
+			.title(`Are you sure you want to delete ${fooditem.title}?`)
+			.ok('Yes')
+			.cancel('No')
+			.targetEvent(event);
+		$mdDialog.show(confirm).then(function() {
+			var index = $scope.fooditems.indexOf(fooditem);
+			$scope.fooditems.splice(index, 1);
+		}, function() {
+			
+		});
+
+
 	}
 
 	function showToast(message) {

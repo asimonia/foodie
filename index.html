@@ -33,11 +33,11 @@
 			</md-input-container>
 			<md-input-container>
 				<label for="price">Price</label>
-				<input type="text" id="price" ng-model="fooditem.price" md-autofocus>
+				<input type="text" id="price" ng-model="fooditem.price" >
 			</md-input-container>
 			<md-input-container>
 				<label for="description">Description</label>
-				<textarea type="text" id="description" ng-model="fooditem.description" md-autofocus>
+				<textarea type="text" id="description" ng-model="fooditem.description" >
 				</textarea>
 			</md-input-container>
 			<md-input-container>
@@ -47,14 +47,12 @@
 			<md-button ng-if="!editing" ng-click="saveFooditem(fooditem)" class="md-primary">
 				Save
 			</md-button>
-			<md-button ng-if="editing" ng-click="saveEdit()" class="md-primary">
+			<md-button ng-if="editing" ng-click="saveEdit(fooditem)" class="md-primary">
 				Save Edit
 			</md-button>
 			<md-button ng-click="closeSidebar()" class="md-warn">
 				Cancel
 			</md-button>
-
-			<pre>{{ fooditem | json }}</pre>
 
 		</md-content>
 	</md-sidenav>
@@ -106,8 +104,8 @@
 				<div class="food-admin" ng-if="showAdmin">
 					<h3>Admin</h3>
 					<div layout="row">
-						<md-button ng-click="editFooditem(fooditem)" ng-class="md-primary">Edit</md-button>
-						<md-button class="md-warn">Delete</md-button>
+						<md-button ng-click="editFooditem(fooditem)" class="md-primary">Edit</md-button>
+						<md-button ng-click="deleteFooditem($event, fooditem)" class="md-warn">Delete</md-button>
 					</div>
 				</div>
 
