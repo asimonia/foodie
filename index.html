@@ -17,7 +17,7 @@
 				New Food Item
 			</md-button>
 
-			<md-button ng-click="showFilters = true">
+			<md-button ng-click="showFilters = !showFilters">
 				<md-icon class="mdi mdi-magnify"></md-icon>
 				Filters
 			</md-button>
@@ -82,7 +82,7 @@
 	</md-sidenav>
 
 	<md-content class="md-padding" layout="row" layout-wrap>
-		<md-card ng-repeat="fooditem in fooditems | filter: fooditemsFilter" flex="30" class="foodcard">
+		<md-card ng-repeat="fooditem in fooditems | filter: fooditemsFilter | filter: category" flex="30" class="foodcard">
 			<img ng-src="{{ fooditem.image }}" alt="image">
 			
 			<md-card-content>

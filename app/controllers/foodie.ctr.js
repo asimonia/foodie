@@ -5,9 +5,7 @@ app.controller("foodieCtrl", function($scope, $http, foodieFactory, $mdSidenav, 
 	// returns a Promise
 	foodieFactory.getFood().then(function(fooditems) {
 		$scope.fooditems = fooditems.data;
-		console.log($scope.fooditems);
 		$scope.categories = getCategories($scope.fooditems);
-		console.log($scope.categories);
 	});
 
 	var contact = {
