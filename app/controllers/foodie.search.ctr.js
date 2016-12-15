@@ -1,10 +1,12 @@
  "use strict";
 
-app.controller("searchFoodieCtrl", function($scope, $state, $mdSidenav, $timeout, $mdDialog, foodieFactory) {
+app.controller("searchFoodieCtrl", function($scope, $state, $mdSidenav, $timeout, $mdDialog, $mdToast, foodieFactory) {
 
 	var vm = this;
 	vm.searchRecipe = searchRecipe;
 	vm.closeSidebar = closeSidebar;
+	vm.logRecipe = logRecipe;
+	vm.addRecipe = addRecipe;
 	vm.saveRecipe = saveRecipe;
 	vm.recipes;
 
@@ -26,32 +28,45 @@ app.controller("searchFoodieCtrl", function($scope, $state, $mdSidenav, $timeout
 		vm.sidenavOpen = false;
 	}
 
+	function logRecipe(recipe) {
+		console.log(recipe);
+	}
+
 	function searchRecipe(recipe) {
 
 		if(recipe) {
 			console.log("You searched for", recipe);
 			foodieFactory.searchRecipes(recipe).then(function(data) {
-				vm.recipes = data.data;
+				vm.recipes = data.data.results;
 				console.log("recipes: ", vm.recipes);
 			});
 		}
 	}
 
+	function addRecipe(recipe) {
+		console.log("recipes: ", vm.recipes);
+		// delete recipe from the list
+		var index = vm.recipes.indexOf(recipe);
+		vm.recipes.splice(index, 1);
+		showToast('Recipe added!');
+	}
+
+	function showToast(message) {
+		$mdToast.show(
+			$mdToast.simple()
+				.content(message)
+				.position('top, right')
+				.hideDelay(3000)
+		);
+	}
+
 	function saveRecipe(recipe) {
+		console.log("save recipe", recipe);
+		if(recipe) {
 
-	/*
-		if(fooditem) {
-
-			fooditem.contact = {
-				name: "Alex Simonian",
-				phone: "(555) 555-5555",
-				email: "alex.simonian@gmail.com"
-			};
-
-			$scope.$emit('newFooditem', fooditem);
+			$scope.$emit('newFooditem', recipe);
 			vm.sidenavOpen = false;
 		}
-	*/
 	}
 
 });

@@ -17,8 +17,8 @@
 		</md-button>
 
 		<md-content class="md-padding" layout-wrap>
-			<md-card ng-repeat="recipe in vm.recipes.results" class="foodcard">
-				<img ng-src="https://spoonacular.com/recipeImages/{{ recipe.image }}" alt="image">
+			<md-card ng-repeat="recipe in vm.recipes" class="foodcard">
+				<img ng-click="vm.saveRecipe(recipe)" ng-src="{{ recipe.image }}" alt="image">
 				
 				<md-card-content>
 					<div class="recipe-info">
