@@ -7,7 +7,7 @@ app.factory("foodieFactory", function($http, $firebaseArray) {
 	function searchRecipes(recipe) {
 		var req = {
 			method: 'GET',
-			url: `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?limitLicense=false&minProtein=0&number=50&offset=0&query=${recipe}&ranking=1`,
+			url: `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?limitLicense=false&minProtein=0&number=50&offset=0&query=${recipe.name}&ranking=1&cuisine=${recipe.cuisine}&type=${recipe.type}`,
 			headers: {
 				'X-Mashape-Key': 'nmoNt3lCutmshYKKFhkeQIjiTlrjp1qroMvjsn6U9iOpe59As4'
 		 	}

@@ -5,10 +5,10 @@ app.controller("searchFoodieCtrl", function($scope, $state, $mdSidenav, $timeout
 	var vm = this;
 	vm.searchRecipe = searchRecipe;
 	vm.closeSidebar = closeSidebar;
-	vm.logRecipe = logRecipe;
-	vm.addRecipe = addRecipe;
 	vm.saveRecipe = saveRecipe;
 	vm.recipes;
+	vm.cuisines = ['african', 'chinese', 'japanese', 'korean', 'vietnamese', 'thai', 'indian', 'british', 'irish', 'french', 'italian', 'mexican', 'spanish', 'middle eastern', 'jewish', 'american', 'cajun', 'southern', 'greek', 'german', 'nordic', 'eastern european', 'caribbean', 'latin american'];
+	vm.types = ['main course', 'side dish', 'dessert', 'appetizer', 'salad', 'bread', 'breakfast', 'soup', 'beverage', 'sauce', 'drink'];
 
 	$timeout(function() {
 		$mdSidenav('left').open();	
@@ -41,14 +41,6 @@ app.controller("searchFoodieCtrl", function($scope, $state, $mdSidenav, $timeout
 				console.log("recipes: ", vm.recipes);
 			});
 		}
-	}
-
-	function addRecipe(recipe) {
-		console.log("recipes: ", vm.recipes);
-		// delete recipe from the list
-		var index = vm.recipes.indexOf(recipe);
-		vm.recipes.splice(index, 1);
-		showToast('Recipe added!');
 	}
 
 	function showToast(message) {

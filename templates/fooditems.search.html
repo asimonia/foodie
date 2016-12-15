@@ -4,11 +4,27 @@
 	</md-toolbar>
 
 	<md-content layout-padding>
+	    <div layout="row">
+	      <md-input-container style="margin-right: 10px;">
+	        <label>Cuisine</label>
+	        <md-select ng-model="recipe.cuisine">
+	        	<md-optgroup label="Cuisine">
+	          	<md-option ng-repeat="cuisine in vm.cuisines" value="{{cuisine}}">{{cuisine | uppercase}}</md-option>
+	        </md-select>
+	      </md-input-container>
+	      <md-input-container>
+	        <label>Type</label>
+	        <md-select ng-model="recipe.type">
+	        	<md-optgroup label="Type">
+	          	<md-option ng-repeat="type in vm.types" value="{{type}}">{{type | uppercase}}</md-option>
+	        </md-select>
+	      </md-input-container>
+	    </div>
 		<md-input-container>
 			<label for="title">Recipe</label>
-			<input type="text" id="title" ng-model="recipe" md-autofocus>
+			<input type="text" id="title" ng-model="recipe.name" md-autofocus>
 		</md-input-container>
-		<md-button ng-click="vm.searchRecipe(recipe)" class="md-primary">
+		<md-button ng-click="vm.searchRecipe(recipe); recipe.cuisine = ''; recipe.type = ''; recipe.name ='';" class="md-primary">
 			Search
 		</md-button>
 
