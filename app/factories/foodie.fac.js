@@ -28,9 +28,22 @@ app.factory("foodieFactory", function($http, $firebaseArray) {
 		return $http(req);
 	}
 
+	function searchFridge(ingredients) {
+		
+		var req = {
+			method: 'GET',
+			url: `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients}&limitLicense=false&number=5&ranking=1`,
+			headers: {
+				'X-Mashape-Key': 'nmoNt3lCutmshYKKFhkeQIjiTlrjp1qroMvjsn6U9iOpe59As4'
+		 	}
+		}
+		return $http(req);
+	}
+
 	return {
 		ref: $firebaseArray(ref),
 		searchRecipes,
-		searchProducts
+		searchProducts,
+		searchFridge
 	};
 });

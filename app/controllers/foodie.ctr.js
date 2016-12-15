@@ -7,6 +7,7 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 	vm.categories;
 	vm.searchRecipes = searchRecipes;
 	vm.searchProducts = searchProducts;
+	vm.searchFridge = searchFridge;
 	vm.openSidebar = openSidebar;
 	vm.closeSidebar = closeSidebar;
 	vm.saveFooditem = saveFooditem;
@@ -44,6 +45,10 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 
 	function searchProducts() {
 		$state.go('fooditems.products');
+	}
+
+	function searchFridge() {
+		$state.go('fooditems.fridgify');
 	}
 
 	function closeSidebar() {

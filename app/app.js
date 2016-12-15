@@ -44,6 +44,11 @@ app.config(function($mdThemingProvider, $stateProvider) {
       url: '/products',
       templateUrl: 'templates/fooditems.products.html',
       controller: 'productsFoodieCtrl as vm'
+    })
+    .state('fooditems.fridgify', {
+      url: '/fridgify',
+      templateUrl: 'templates/fooditems.fridgify.html',
+      controller: 'fridgifyFoodieCtrl as vm'
     });
 
 });

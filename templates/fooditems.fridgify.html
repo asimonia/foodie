@@ -1,0 +1,38 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-open="vm.sidenavOpen">
+	<md-toolbar>
+		<h1 class="md-toolbar-tools">What's in your fridge?</h1>
+	</md-toolbar>
+
+	<md-content layout-padding>
+		<md-input-container>
+			<label for="ingredient">Ingredient</label>
+			<input type="text" id="ingredient" ng-model="ingredient" my-enter="vm.addItem(ingredient); ingredient = null" md-autofocus>
+		</md-input-container>
+			<ul>
+				<li ng-repeat="x in vm.ingredients">
+					{{ x }}
+					<span ng-click="vm.removeItem($index)"><md-icon class="mdi mdi-delete"></md-icon></span>
+				</li>
+			</ul>
+		<md-button ng-click="vm.searchFridge(vm.ingredients)" class="md-primary">
+			Search
+		</md-button>
+
+		<md-button ng-click="vm.closeSidebar()" class="md-warn">
+			Cancel
+		</md-button>
+
+		<md-content class="md-padding" layout-wrap>
+			<md-card ng-repeat="recipe in vm.recipes" class="foodcard">
+				<img ng-click="vm.saveRecipe(recipe)" ng-src="{{ recipe.image }}" alt="image">
+				
+				<md-card-content>
+					<div class="recipe-info">
+						<h2 class="md-title">{{ recipe.title }}</h2>
+						<p></p>
+					</div>
+				</md-card-content>
+			</md-card>
+		</md-content>
+	</md-content>
+</md-sidenav>
