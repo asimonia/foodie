@@ -18,12 +18,11 @@
 
 		<md-content class="md-padding" layout-wrap>
 			<md-card ng-repeat="product in vm.products.products" class="foodcard">
-				<img ng-src="{{ product.image }}" alt="image">
+				<img ng-click="vm.saveProduct(product)" ng-src="{{ product.image }}" alt="image">
 				
 				<md-card-content>
 					<div class="product-info">
 						<h2 class="md-title">{{ product.title }}</h2>
-						<md-button class="md-warn">Select</md-button>
 					</div>
 				</md-card-content>
 			</md-card>

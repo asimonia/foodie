@@ -22,7 +22,9 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 
 	$scope.$on('newFooditem', function(event, fooditem) {
 		vm.fooditems.$add(fooditem);
-		showToast('Food item saved!');
+		var pop = new Audio("../data/pop.ogg");
+		pop.play();
+		showToast(`${fooditem.title} Saved!`);
 	});
 
 	$scope.$on('editSaved', function(event, message) {
@@ -85,13 +87,13 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 			.cancel('No')
 			.targetEvent(event);
 		$mdDialog.show(confirm).then(function() {
+			var pop = new Audio("../data/pop.ogg");
+			pop.play();
 			vm.fooditems.$remove(fooditem);
-			showToast('Food item deleted!');
+			showToast(`${fooditem.title} Deleted!`);
 		}, function() {
 			
 		});
-
-
 	}
 
 	function showToast(message) {

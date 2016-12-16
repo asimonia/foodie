@@ -1,15 +1,15 @@
 <md-toolbar>
 	<div class="md-toolbar-tools">
-		<p><strong>Foodie</strong></p>
+		<p class="logo"><strong>Foodie</strong></p>
 
 		<md-button ng-click="vm.openSidebar()">
 			<md-icon class="mdi mdi-book"></md-icon>
-			New Food Item
+			Customize
 		</md-button>
 
 		<md-button ng-click="showFilters = !showFilters">
-			<md-icon class="mdi mdi-magnify"></md-icon>
-			Filters
+			<md-icon class="mdi mdi-food"></md-icon>
+			Meal Plans
 		</md-button>
 
 		<md-button ng-click="vm.searchRecipes()">
@@ -18,7 +18,7 @@
 		</md-button>
 
 		<md-button ng-click="vm.searchProducts()">
-			<md-icon class="mdi mdi-magnify"></md-icon>
+			<md-icon class="mdi mdi-apple"></md-icon>
 			Products
 		</md-button>
 
@@ -26,10 +26,10 @@
 			<md-icon class="mdi mdi-fridge"></md-icon>
 			Fridgify
 		</md-button>
+
 	</div>
-
 </md-toolbar>
-
+<md-content flex>
 <div class="filters" layout="row" layout-align="center center" ng-show="showFilters">
 	
 	<md-input-container>
@@ -56,23 +56,16 @@
 		<img ng-src="{{ fooditem.image }}" alt="image">
 		
 		<md-card-content>
-			<div class="fooditem-info" ng-show="!showContact">
+			<div class="fooditem-info">
 				<h2 class="md-title">{{ fooditem.title }}</h2>
 				<h2>{{ fooditem.posted | date }}</h2>
 				<h3>{{ fooditem.price | currency }}</h3>
 				<p>{{ fooditem.description }}</p>
 			</div>
 
-			<div class="fooditem-contact" ng-show="showContact">
-				<p><md-icon class="mdi mdi-account"></md-icon> {{ fooditem.contact.name }}</p>
-				<p><md-icon class="mdi mdi-phone"></md-icon> {{ fooditem.contact.phone }}</p>
-				<p><md-icon class="mdi mdi-email"></md-icon> {{ fooditem.contact.email }}</p>
-			</div>
-
 			<div layout="row">
 				<md-button 
-					ng-click="showContact = true"
-					ng-show="!showContact">
+					ng-click="">
 					Contact
 				</md-button>
 
@@ -85,7 +78,7 @@
 				<md-button
 					ng-click="showAdmin = true"
 					ng-show="!showAdmin">
-					Admin
+					More
 				</md-button>
 
 				<md-button
@@ -96,7 +89,6 @@
 			</div>
 
 			<div class="food-admin" ng-if="showAdmin">
-				<h3>Admin</h3>
 				<div layout="row">
 					<md-button ng-click="vm.editFooditem(fooditem)" class="md-primary"><md-icon class="mdi mdi-magnify"></md-icon>Edit</md-button>
 					<md-button ng-click="vm.deleteFooditem($event, fooditem)" class="md-warn"><md-icon class="mdi mdi-delete"></md-icon>Delete</md-button>

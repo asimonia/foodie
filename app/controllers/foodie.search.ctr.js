@@ -27,10 +27,7 @@ app.controller("searchFoodieCtrl", function($scope, $state, $mdSidenav, $timeout
 	function closeSidebar() {
 		vm.sidenavOpen = false;
 	}
-
-	function logRecipe(recipe) {
-		console.log(recipe);
-	}
+	
 
 	function searchRecipe(recipe) {
 

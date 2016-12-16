@@ -2,7 +2,9 @@
 
 var app = angular.module("foodie", ['ngMaterial', 'ui.router', 'firebase']);
 
-app.config(function($mdThemingProvider, $stateProvider) {
+app.config(function($mdThemingProvider, $stateProvider, $qProvider) {
+  $qProvider.errorOnUnhandledRejections(false);
+  
   $mdThemingProvider.theme('default')
     .primaryPalette('pink', {
       'default': '400', // by default use shade 400 from the pink palette for primary intentions

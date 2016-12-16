@@ -38,20 +38,13 @@ app.controller("productsFoodieCtrl", function($scope, $state, $mdSidenav, $timeo
 	}
 
 	function saveProduct(product) {
+		console.log("save product", product);
+		if (product) {
 
-	/*
-		if(fooditem) {
-
-			fooditem.contact = {
-				name: "Alex Simonian",
-				phone: "(555) 555-5555",
-				email: "alex.simonian@gmail.com"
-			};
-
-			$scope.$emit('newFooditem', fooditem);
+			$scope.$emit('newFooditem', product);
 			vm.sidenavOpen = false;
 		}
-	*/
 	}
+
 
 });

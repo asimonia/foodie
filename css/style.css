@@ -1,3 +1,13 @@
+.logo {
+  font-family: cursive;
+  font-size: 35px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 26.4px;
+  margin-right: 30px;
+}
+
 md-card img {
   width: 100%;
   height: auto !important;
