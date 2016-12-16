@@ -6,21 +6,41 @@
 	<md-content layout-padding>
 		<md-input-container>
 			<label for="title">Title</label>
-			<input type="text" id="title" ng-model="fooditem.title" md-autofocus>
-		</md-input-container>
-		<md-input-container>
-			<label for="price">Price</label>
-			<input type="text" id="price" ng-model="fooditem.price" >
+			<input type="text" id="title" ng-model="vm.fooditem.title" md-autofocus>
 		</md-input-container>
 		<md-input-container>
 			<label for="description">Description</label>
-			<textarea type="text" id="description" ng-model="fooditem.description" >
+			<textarea type="text" id="description" ng-model="vm.fooditem.description" >
 			</textarea>
 		</md-input-container>
 		<md-input-container>
-			<label for="image">Image Link</label>
-			<input type="text" id="image" ng-model="fooditem.image">
+			<label for="price">Price</label>
+			<input type="text" id="price" ng-model="vm.fooditem.price" >
 		</md-input-container>
+		<md-input-container>
+			<label for="image">Image Link</label>
+			<input type="text" id="image" ng-model="vm.fooditem.image">
+		</md-input-container>
+		<md-input-container>
+			<label for="day">Day of Week</label>
+			<input type="text" id="day" ng-model="vm.fooditem.day">
+		</md-input-container>
+		<md-input-container>
+			<label for="calories">Calories</label>
+			<input type="text" id="calories" ng-model="vm.fooditem.calories">
+		</md-input-container>
+		<md-input-container>
+			<label for="carbs">Carbs</label>
+			<input type="text" id="carbs" ng-model="vm.fooditem.carbs">
+		</md-input-container>
+		<md-input-container>
+			<label for="fat">Fat</label>
+			<input type="text" id="fat" ng-model="vm.fooditem.fat">
+		</md-input-container>
+		<md-input-container>
+			<label for="protein">Protein</label>
+			<input type="text" id="protein" ng-model="vm.fooditem.protein">
+		</md-input-container>	
 		<md-button ng-if="!editing" ng-click="vm.saveFooditem(fooditem)" class="md-primary">
 			Save
 		</md-button>
