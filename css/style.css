@@ -8,6 +8,10 @@
   margin-right: 30px;
 }
 
+#nutrient-info {
+  font-size: 15px;
+}
+
 md-card img {
   width: 100%;
   height: auto !important;

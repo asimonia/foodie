@@ -1,4 +1,4 @@
-<md-toolbar>
+<md-toolbar ng-cloak>
 	<div class="md-toolbar-tools">
 		<p class="logo"><strong>Foodie</strong></p>
 
@@ -52,7 +52,13 @@
 <ui-view></ui-view>
 
 <md-content class="md-padding" layout="row" layout-wrap>
-	<md-card ng-repeat="fooditem in vm.fooditems | filter: fooditemsFilter | filter: category" flex="30" class="foodcard">
+	<md-card ng-repeat="fooditem in vm.fooditems | filter: fooditemsFilter" flex="30" class="foodcard">
+	    <md-tooltip id="nutrient-info" md-direction="top">
+          Calories: {{ fooditem.calories }}
+          Carbs: {{ fooditem.carbs }}
+          Fat: {{ fooditem.fat }}
+          Protein: {{ fooditem.protein }}
+        </md-tooltip>
 		<img ng-src="{{ fooditem.image }}" alt="image">
 		
 		<md-card-content>
@@ -66,7 +72,7 @@
 			<div layout="row">
 				<md-button 
 					ng-click="">
-					Contact
+					Recipe
 				</md-button>
 
 				<md-button
@@ -78,7 +84,7 @@
 				<md-button
 					ng-click="showAdmin = true"
 					ng-show="!showAdmin">
-					More
+					Options
 				</md-button>
 
 				<md-button
