@@ -4,6 +4,7 @@ app.factory("foodieFactory", function($http, $firebaseArray) {
 
 	var ref = new Firebase('https://foodie-93ebe.firebaseio.com');
 
+	// Complex Recipe Search
 	function searchRecipes(recipe) {
 		var req = {
 			method: 'GET',
@@ -16,6 +17,7 @@ app.factory("foodieFactory", function($http, $firebaseArray) {
 		return $http(req);
 	}
 
+	// Search Grocery Products
 	function searchProducts(product) {
 		var req = {
 			method: 'GET',
@@ -28,6 +30,7 @@ app.factory("foodieFactory", function($http, $firebaseArray) {
 		return $http(req);
 	}
 
+	// Find By Ingredients
 	function searchFridge(ingredients) {
 		
 		var req = {
@@ -40,10 +43,24 @@ app.factory("foodieFactory", function($http, $firebaseArray) {
 		return $http(req);
 	}
 
+	// Get Analyzed Recipe Instructions
+	function searchInstructions(id) {
+
+		var req = {
+			method: 'GET',
+			url: `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${id}/analyzedInstructions?stepBreakdown=true`,
+			headers: {
+				'X-Mashape-Key': 'nmoNt3lCutmshYKKFhkeQIjiTlrjp1qroMvjsn6U9iOpe59As4'
+		 	}	
+		}
+		return $http(req);
+	}
+
 	return {
 		ref: $firebaseArray(ref),
 		searchRecipes,
 		searchProducts,
-		searchFridge
+		searchFridge,
+		searchInstructions
 	};
 });

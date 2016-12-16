@@ -14,6 +14,7 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 	vm.editFooditem = editFooditem;
 	vm.deleteFooditem = deleteFooditem;
 	vm.saveEdit = saveEdit;
+	vm.getInstructions = getInstructions;
 
 	vm.fooditems = foodieFactory.ref;
 	vm.fooditems.$loaded().then(function(fooditems) {
@@ -51,6 +52,12 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 
 	function searchFridge() {
 		$state.go('fooditems.fridgify');
+	}
+
+	function getInstructions(fooditem) {
+		$state.go('instructions', {
+			id: fooditem.$id
+		});
 	}
 
 	function closeSidebar() {

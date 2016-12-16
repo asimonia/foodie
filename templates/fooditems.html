@@ -27,6 +27,11 @@
 			Fridgify
 		</md-button>
 
+		<md-button ng-click="">
+			<md-icon class="mdi mdi-cart"></md-icon>
+			Shopping List
+		</md-button>
+
 	</div>
 </md-toolbar>
 <md-content flex>
@@ -71,7 +76,7 @@
 
 			<div layout="row">
 				<md-button 
-					ng-click="">
+					ng-click="vm.getInstructions(fooditem)">
 					Recipe
 				</md-button>
 
