@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("foodie", ['ngMaterial', 'ui.router', 'firebase', 'dndLists']);
+var app = angular.module("foodie", ['ngMaterial', 'ui.router', 'firebase', 'ui.sortable']);
 
 app.config(function($mdThemingProvider, $stateProvider, $qProvider) {
   $qProvider.errorOnUnhandledRejections(false);
@@ -19,6 +19,10 @@ app.config(function($mdThemingProvider, $stateProvider, $qProvider) {
     });
 
   $stateProvider
+    .state('home', {
+      url: '/',
+      templateUrl: 'templates/home.html',
+    })
     .state('fooditems', {
       url: '/fooditems',
       templateUrl: 'templates/fooditems.html',
