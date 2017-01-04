@@ -30,7 +30,7 @@ app.controller("searchFoodieCtrl", function($scope, $state, $mdSidenav, $timeout
 	
 
 	function searchRecipe(recipe) {
-
+		
 		if(recipe) {
 			console.log("You searched for", recipe);
 			foodieFactory.searchRecipes(recipe).then(function(data) {

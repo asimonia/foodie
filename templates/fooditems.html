@@ -36,11 +36,13 @@
 </md-toolbar>
 <md-content flex>
 <div class="filters" layout="row" layout-align="center center" ng-show="showFilters">
-	<div layout="row" class="md-title">
+	<div layout="row" class="md-title" id="fitness">
+	<md-icon class="mdi mdi-silverware"></md-icon>
 		Calories: {{ vm.totalCalories }} /
 		Carbs: {{ vm.totalCarbs }}g /
 		Fat: {{ vm.totalFat }}g /
 		Protein: {{ vm.totalProtein }}g
+	<md-icon class="mdi mdi-silverware"></md-icon>
 	</div>
 </div>
 

@@ -1,3 +1,11 @@
+.bad {
+  background-color: red;
+}
+
+.good {
+  background-color: green;
+}
+
 .logo {
   font-family: cursive;
   font-size: 35px;
