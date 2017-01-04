@@ -9,7 +9,7 @@
 
 		<md-button ng-click="showFilters = !showFilters">
 			<md-icon class="mdi mdi-food"></md-icon>
-			Meal Plans
+			Nutrition
 		</md-button>
 
 		<md-button ng-click="vm.searchRecipes()">
@@ -36,61 +36,49 @@
 </md-toolbar>
 <md-content flex>
 <div class="filters" layout="row" layout-align="center center" ng-show="showFilters">
-	
-	<md-input-container>
-		<label>Enter search</label>
-		<input type="text" ng-model="fooditemsFilter">
-	</md-input-container>
-
-	<md-input-container>
-		<label>Category</label>
-		<md-select ng-model="category">
-			<md-option ng-repeat="category in categories" value="{{ category }}">{{ category }}</md-option>
-		</md-select>
-	</md-input-container>
-
-	<div layout="row">
-		<md-button class="md-warn" ng-click="fooditemsFilter = ''; category = ''">Clear</md-button>
+	<div layout="row" class="md-title">
+		Calories: {{ vm.totalCalories }} /
+		Carbs: {{ vm.totalCarbs }}g /
+		Fat: {{ vm.totalFat }}g /
+		Protein: {{ vm.totalProtein }}g
 	</div>
 </div>
 
 <ui-view></ui-view>
 
 <md-content class="md-padding" layout="row" layout-wrap>
-	<md-card ng-repeat="fooditem in vm.fooditems | filter: fooditemsFilter" flex="30" class="foodcard">
+	
+	<md-card ng-repeat="fooditem in vm.fooditems" flex="20" class="foodcard">
+	
 	    <md-tooltip id="nutrient-info" md-direction="top">
+	      {{ fooditem.title }} --
           Calories: {{ fooditem.calories }}
           Carbs: {{ fooditem.carbs }}
           Fat: {{ fooditem.fat }}
           Protein: {{ fooditem.protein }}
         </md-tooltip>
-		<img ng-src="{{ fooditem.image }}" alt="image">
+		<img class="image" ng-src="{{ fooditem.image }}" alt="image">
 		
 		<md-card-content>
-			<div class="fooditem-info">
-				<h2 class="md-title">{{ fooditem.title }}</h2>
-				<p>{{ fooditem.description }}</p>
-			</div>
-
 			<div layout="row">
-				<md-button 
-					ng-click="vm.getInstructions(fooditem)">
+				<md-button class="md-primary md-raised"
+					ng-click="vm.getInstructions($event, fooditem)">
 					Recipe
 				</md-button>
 
-				<md-button
+				<md-button class="md-primary md-raised"
 					ng-click="showContact = false"
 					ng-show="showContact">
 					Details
 				</md-button>
 
-				<md-button
+				<md-button class="md-primary md-raised"
 					ng-click="showAdmin = true"
 					ng-show="!showAdmin">
 					Options
 				</md-button>
 
-				<md-button
+				<md-button class="md-primary md-raised"
 					ng-click="showAdmin = false"
 					ng-show="showAdmin">
 					Close
@@ -103,7 +91,10 @@
 					<md-button ng-click="vm.deleteFooditem($event, fooditem)" class="md-warn"><md-icon class="mdi mdi-delete"></md-icon>Delete</md-button>
 				</div>
 			</div>
-
 		</md-card-content>
+	
 	</md-card>
+	
 </md-content>
+
+

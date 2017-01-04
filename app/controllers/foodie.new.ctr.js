@@ -28,11 +28,6 @@ app.controller("newFoodieCtrl", function($scope, $state, $mdSidenav, $timeout, $
 
 		if(fooditem) {
 
-			fooditem.contact = {
-				name: "Alex Simonian",
-				phone: "(555) 555-5555",
-				email: "alex.simonian@gmail.com"
-			};
 
 			$scope.$emit('newFooditem', fooditem);
 			vm.sidenavOpen = false;

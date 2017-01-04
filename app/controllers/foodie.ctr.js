@@ -5,6 +5,7 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 	var vm = this;
 
 	vm.categories;
+	vm.currentRecipe;
 	vm.searchRecipes = searchRecipes;
 	vm.searchProducts = searchProducts;
 	vm.searchFridge = searchFridge;
@@ -15,28 +16,26 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 	vm.deleteFooditem = deleteFooditem;
 	vm.saveEdit = saveEdit;
 	vm.getInstructions = getInstructions;
+	vm.totalCalories = 0;
+	vm.totalFat = 0;
+	vm.totalCarbs = 0;
+	vm.totalProtein = 0;
 
 	vm.fooditems = foodieFactory.ref;
-	vm.fooditems.$loaded().then(function(fooditems) {
-		vm.categories = getCategories(fooditems);
-	});
+	vm.fooditems.$loaded().then(getCalories);
 
 	$scope.$on('newFooditem', function(event, fooditem) {
 		vm.fooditems.$add(fooditem);
 		var pop = new Audio("../data/pop.ogg");
 		pop.play();
 		showToast(`${fooditem.title} Saved!`);
+		getCalories(vm.fooditems);
 	});
 
 	$scope.$on('editSaved', function(event, message) {
 		showToast(message);
+		getCalories(vm.fooditems);
 	});
-
-	var contact = {
-		name: "Alex Simonian",
-		phone: "(555) 555-5555",
-		email: "alex.simonian@gmail.com"
-	};
 
 	function openSidebar() {
 		$state.go('fooditems.new');
@@ -54,10 +53,26 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 		$state.go('fooditems.fridgify');
 	}
 
-	function getInstructions(fooditem) {
-		$state.go('instructions', {
-			id: fooditem.$id
-		});
+	function getInstructions(event, fooditem) {
+		vm.currentRecipe = fooditem;
+		console.log(fooditem);
+	    $mdDialog.show({
+	      controller: DialogController,
+	      templateUrl: 'templates/dialog1.tmpl.html',
+	      parent: angular.element(document.body),
+	      targetEvent: event,
+	      clickOutsideToClose:true,
+	      fullscreen: false,
+	      locals: {
+	      	items: vm.currentRecipe
+	      } 
+	    })
+	    .then(function(answer) {
+	      $scope.status = 'You said the information was "' + answer + '".';
+	    }, function() {
+	      $scope.status = 'You cancelled the dialog.';
+	    });
+		
 	}
 
 	function closeSidebar() {
@@ -72,6 +87,7 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 			closeSidebar();
 			showToast("Food item saved!");
 		}
+		getCalories(vm.fooditems);
 	}
 
 	function editFooditem(fooditem) {
@@ -85,6 +101,7 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 		vm.fooditem = {};
 		closeSidebar();
 		showToast("Edit saved!");
+		getCalories(vm.fooditems);
 	}
 
 	function deleteFooditem(event, fooditem) {
@@ -101,6 +118,7 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 		}, function() {
 			
 		});
+		getCalories(vm.fooditems);
 	}
 
 	function showToast(message) {
@@ -124,5 +142,58 @@ app.controller("foodieCtrl", function($scope, $state, $http, foodieFactory, $mdS
 
 		return _.uniq(categories);
 	}
+
+	function getCalories(fooditems) {
+
+		// reset calorie count
+		vm.totalCalories = 0;
+		vm.totalFat = 0;
+		vm.totalCarbs = 0;
+		vm.totalProtein = 0;
+		console.log("fooditems reset!", fooditems)
+
+		angular.forEach(fooditems, function(item) {
+			if (item.calories) {
+				console.log(fooditems);
+				vm.totalCalories += parseInt(item.calories);
+				vm.totalFat += parseInt(item.fat);
+				vm.totalProtein += parseInt(item.protein);
+				vm.totalCarbs += parseInt(item.carbs);
+				console.log("totalCalories", vm.totalCalories);
+			}
+		});
+	}
+
+	  function DialogController($scope, $mdDialog, items, foodieFactory) {
+
+	  	$scope.items = items;
+
+	  	$scope.showRecipe = function (r) {
+
+			if (r) {
+				console.log("You searched for", r);
+				foodieFactory.searchInstructions(r).then(function(data) {
+					$scope.instructions = data.data[0].steps;
+					$scope.ingredients = data.data[0].steps;
+					console.log("instructions: ", $scope.instructions);
+				});
+			}
+		}
+
+	    $scope.hide = function() {
+	      $mdDialog.hide();
+	      console.log(vm.currentRecipe);
+	    };
+
+	    $scope.cancel = function() {
+	      $mdDialog.cancel();
+	      console.log(vm.currentRecipe);
+	    };
+
+	    $scope.answer = function(answer) {
+	      $mdDialog.hide(answer);
+	      console.log(vm.currentRecipe);
+	    };
+	  }
 
 });
